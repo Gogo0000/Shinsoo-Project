@@ -1,8 +1,8 @@
 [app]
 
 # ── Temel Bilgiler ────────────────────────────────────────────────────────────
-title          = SistemIzleme
-package.name   = sistemizleme
+title          = Shinsoo
+package.name   = shinsoo
 package.domain = com.example
 
 source.dir     = .
