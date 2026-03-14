@@ -7,21 +7,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Python_Kur
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Buildozer_Ve_Bagimliliklari_Kur
+      - name: Sistem_Paketlerini_Kur
         run: |
-          sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-          pip3 install --user --upgrade Cython==0.29.33 buildozer
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+
+      - name: Buildozer_Yukle
+        run: |
+          pip3 install --user Cython==0.29.33 buildozer
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: APK_Basimi
         run: |
-          export PATH=$PATH:$HOME/.local/bin
           yes | buildozer android debug
+        continue-on-error: false
 
       - name: Shinsoo_APK_Yukle
         uses: actions/upload-artifact@v4
