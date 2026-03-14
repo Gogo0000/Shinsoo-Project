@@ -7,8 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Buildozer_Hazirlik_Ve_Basim
-        uses: ArtemSerebriakov/buildozer-action@v1
+      - name: Buildozer_Hazirlik
+        uses: Enitoni/buildozer-action@v1
         with:
           workdir: .
           buildozer_version: master
@@ -18,4 +18,3 @@ jobs:
         with:
           name: Shinsoo_Uygulama_Dosyasi
           path: bin/*.apk
-          
