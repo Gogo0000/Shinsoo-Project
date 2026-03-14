@@ -1,26 +1,32 @@
-name: Shinsoo_Final_Basim
+name: Shinsoo_Kesin_Cozum
 on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
       - uses: actions/checkout@v4
 
-      - name: Buildozer_Yukle
+      - name: Buildozer_Hizli_Kurulum
         run: |
-          pip3 install --user Cython==0.29.33 buildozer
+          python3 -m pip install --user --upgrade pip
+          python3 -m pip install --user Cython==0.29.33 buildozer
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Sistem_Ve_APK_Basimi
+      - name: Android_SDK_Ve_Paket_Hazirligi
         run: |
-          sudo apt-get update || true
+          sudo apt-get update -q
           sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-          yes | buildozer android debug
 
-      - name: Shinsoo_APK_Yukle
+      - name: APK_Uretimi
+        run: |
+          yes | buildozer android debug
+        continue-on-error: false
+
+      - name: APK_Dosyasini_Disari_Aktar
         uses: actions/upload-artifact@v4
         with:
-          name: Shinsoo_Uygulama
+          name: Shinsoo_Final_App
           path: bin/*.apk
-          
