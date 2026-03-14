@@ -44,6 +44,9 @@ jobs:
         run: |
           buildozer android debug 2>&1 | tee build.log || true
 
+      - name: APK Bul
+        run: find . -name "*.apk" 2>/dev/null || echo "APK bulunamadi"
+
       - name: APK ve Log Yukle
         uses: actions/upload-artifact@v4
         if: always()
@@ -51,4 +54,4 @@ jobs:
           name: apk-ve-log
           path: |
             build.log
-            bin/
+            **/*.apk
