@@ -4,6 +4,7 @@ package.name = shinsoo
 package.domain = com.gogo
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
+source.main = main.py
 version = 1.0.0
 requirements = python3,kivy==2.3.0,requests
 orientation = portrait
@@ -15,6 +16,7 @@ android.archs = arm64-v8a
 android.ndk = 25b
 android.accept_sdk_license = True
 android.bootstrap = sdl2
+services = Monitor:service/monitor.py:foreground
 
 [buildozer]
 log_level = 2
