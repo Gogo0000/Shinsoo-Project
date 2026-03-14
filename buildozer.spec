@@ -1,19 +1,18 @@
 [app]
 title = Shinsoo
 package.name = shinsoo
-package.domain = com.example
+package.domain = com.gogo
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
 version = 1.0.0
-requirements = python3,kivy==2.3.0,requests
-services = Monitor:service/monitor.py
+requirements = python3,kivy,requests
 orientation = portrait
-android.permissions = INTERNET,WAKE_LOCK,RECEIVE_BOOT_COMPLETED,FOREGROUND_SERVICE
+android.permissions = INTERNET,WAKE_LOCK,FOREGROUND_SERVICE
 android.minapi = 21
 android.targetapi = 33
 android.archs = arm64-v8a
 android.ndk = 25b
-android.meta_data = android.app.foreground_service_type=dataSync
+android.accept_sdk_license = True
 
 [buildozer]
 log_level = 2
