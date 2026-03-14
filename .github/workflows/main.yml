@@ -3,19 +3,18 @@ on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04  # Daha stabil olan eski sürüme çektik
     steps:
       - uses: actions/checkout@v4
 
-      - name: Buildozer_Yukle
+      - name: Paketleri_Zorla_Kur
         run: |
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
           pip3 install --user Cython==0.29.33 buildozer
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Sistem_Paketleri_Ve_APK_Basimi
+      - name: APK_Basimi
         run: |
-          sudo apt-get update || true
-          sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+          export PATH=$PATH:$HOME/.local/bin
           yes | buildozer android debug
 
       - name: Shinsoo_APK_Yukle
