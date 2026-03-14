@@ -1,11 +1,11 @@
 name: Shinsoo_APK_Basici
-on: workflow_dispatch # Sen butona basınca çalışır
+on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Buildozer_Hazirlik_Ve_Basim
         uses: ArtemSerebriakov/buildozer-action@v1
@@ -14,7 +14,7 @@ jobs:
           buildozer_version: master
 
       - name: Shinsoo_APK_Yukle
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Shinsoo_Uygulama_Dosyasi
           path: bin/*.apk
