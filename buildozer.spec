@@ -5,15 +5,14 @@ package.domain = com.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
 version = 1.0.0
-requirements = python3,kivy==2.3.0,requests,plyer
+requirements = python3,kivy,requests
 services = Monitor:service/monitor.py
 orientation = portrait
-android.permissions = INTERNET, WAKE_LOCK, BATTERY_STATS, RECEIVE_BOOT_COMPLETED, FOREGROUND_SERVICE
+android.permissions = INTERNET,WAKE_LOCK,RECEIVE_BOOT_COMPLETED,FOREGROUND_SERVICE
 android.minapi = 21
 android.targetapi = 33
 android.archs = arm64-v8a
 android.ndk = 25b
-android.ndk_path = 
 android.meta_data = android.app.foreground_service_type=dataSync
 
 [buildozer]
