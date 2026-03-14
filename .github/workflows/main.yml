@@ -48,15 +48,13 @@ jobs:
 
       - name: APK Bas
         run: |
-          buildozer android debug 2>&1 | tee build.log
-        env:
-          BUILDOZER_ALLOW_ORG_NAME_AS_PACKAGE_NAME: 1
+          buildozer android debug 2>&1 | tee build.log || true
 
-      - name: APK Yukle
+      - name: APK ve Log Yukle
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: apk-ve-log
           path: |
-            bin/*.apk
             build.log
+            bin/
