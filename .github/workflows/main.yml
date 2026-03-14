@@ -24,16 +24,10 @@ jobs:
             zip unzip \
             git \
             cmake \
-            libltdl-dev \
-            libgstreamer1.0-dev \
-            gstreamer1.0-plugins-base \
-            libsdl2-dev \
-            libsdl2-image-dev \
-            libsdl2-mixer-dev \
-            libsdl2-ttf-dev \
             autoconf \
             libtool \
-            pkg-config
+            pkg-config \
+            openjdk-17-jdk
           pip install --upgrade pip
           pip install buildozer Cython==0.29.37
 
