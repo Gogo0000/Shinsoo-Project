@@ -28,6 +28,8 @@ jobs:
             libtool \
             pkg-config \
             openjdk-17-jdk
+          sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+          java -version
           pip install --upgrade pip
           pip install buildozer==1.5.0 Cython==0.29.37
 
@@ -35,12 +37,17 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.buildozer
-          key: buildozer-v2-${{ hashFiles('buildozer.spec') }}
-          restore-keys: buildozer-v2-
+          key: buildozer-v3-${{ hashFiles('buildozer.spec') }}
+          restore-keys: buildozer-v3-
 
       - name: APK Bas
         run: |
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          export PATH=$JAVA_HOME/bin:$PATH
+          java -version
           buildozer android debug 2>&1 | tee build.log || true
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
 
       - name: APK Kopyala
         run: |
