@@ -7,14 +7,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Buildozer_Hazirlik
-        uses: Enitoni/buildozer-action@v1
+      - name: Python_Kur
+        uses: actions/setup-python@v5
         with:
-          workdir: .
-          buildozer_version: master
+          python-version: '3.10'
+
+      - name: Buildozer_Ve_Bagimliliklari_Kur
+        run: |
+          sudo apt update
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+          pip3 install --user --upgrade Cython==0.29.33 buildozer
+
+      - name: APK_Basimi
+        run: |
+          export PATH=$PATH:$HOME/.local/bin
+          yes | buildozer android debug
 
       - name: Shinsoo_APK_Yukle
         uses: actions/upload-artifact@v4
         with:
           name: Shinsoo_Uygulama_Dosyasi
           path: bin/*.apk
+          
