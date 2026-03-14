@@ -29,16 +29,14 @@ jobs:
             pkg-config \
             openjdk-17-jdk
           pip install --upgrade pip
-          pip install buildozer Cython==0.29.37
+          pip install buildozer==1.5.0 Cython==0.29.37
 
       - name: Buildozer Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.buildozer
-            .buildozer
-          key: buildozer-${{ hashFiles('buildozer.spec') }}
-          restore-keys: buildozer-
+          path: ~/.buildozer
+          key: buildozer-v2-${{ hashFiles('buildozer.spec') }}
+          restore-keys: buildozer-v2-
 
       - name: APK Bas
         run: |
