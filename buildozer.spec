@@ -1,46 +1,33 @@
 [app]
-
-# ── Temel Bilgiler ────────────────────────────────────────────────────────────
-title          = Shinsoo
-package.name   = shinsoo
+title = Shinsoo
+package.name = shinsoo
 package.domain = com.example
-
-source.dir     = .
+source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
+version = 1.0.0
 
-version        = 1.0.0
-requirements   = python3,kivy,requests,plyer,jnius,android
+# Sadeleştirilmiş kütüphane listesi
+requirements = python3,kivy==2.3.0,requests,plyer
 
-# ── Arka Plan Servisi ─────────────────────────────────────────────────────────
-# service satırı: "etiket:dosya_yolu" formatındadır.
-# Uygulama kapatıldığında bile servis hayatta kalır.
+# Servis tanımı doğru
 services = Monitor:service/monitor.py
 
-# ── Ekran Yönü ────────────────────────────────────────────────────────────────
 orientation = portrait
 
-# ── Android İzinleri ─────────────────────────────────────────────────────────
-# INTERNET           : HTTP POST istekleri için zorunlu
-# WAKE_LOCK          : CPU'nun arka planda uyumaması için
-# BATTERY_STATS      : Detaylı batarya verisi okumak için
-# RECEIVE_BOOT_COMPLETED : Cihaz açılışında servisi otomatik başlatmak için
-android.permissions = INTERNET, WAKE_LOCK, BATTERY_STATS, RECEIVE_BOOT_COMPLETED
+# Arka plan servisi için gereken ek izin eklendi
+android.permissions = INTERNET, WAKE_LOCK, BATTERY_STATS, RECEIVE_BOOT_COMPLETED, FOREGROUND_SERVICE
 
-# ── Android Yapılandırması ────────────────────────────────────────────────────
-android.minapi    = 21
+android.minapi = 21
 android.targetapi = 33
-android.archs     = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a, armeabi-v7a
 
-# Ön plan servisi bildirimi için (Android 8+)
+# NDK Versiyonunu buraya ekle (Hatayı çözen kısım)
+android.ndk = 25b
+android.ndk_path = 
+
+# Ön plan servis tipi
 android.meta_data = android.app.foreground_service_type=dataSync
 
-# ── Build Araçları ────────────────────────────────────────────────────────────
 [buildozer]
-log_level  = 2
+log_level = 2
 warn_on_root = 1
-
-# ── İmzalama (release için doldur) ───────────────────────────────────────────
-# android.keystore          = myapp.keystore
-# android.keystore_passwd   = mypassword
-# android.keyalias          = myapp
-# android.keyalias_passwd   = mypassword
