@@ -5,7 +5,7 @@ package.domain = com.example
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
 version = 1.0.0
-requirements = python3,kivy,requests
+requirements = python3,kivy==2.3.0,requests
 services = Monitor:service/monitor.py
 orientation = portrait
 android.permissions = INTERNET,WAKE_LOCK,RECEIVE_BOOT_COMPLETED,FOREGROUND_SERVICE
